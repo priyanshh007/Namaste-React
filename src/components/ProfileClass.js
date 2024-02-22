@@ -1,20 +1,32 @@
 import React from "react";
 
 class Profile extends React.Component{
-    constructor(props){
+    constructor(props){ 
          super(props);
       //creation of use state
-         this.state={
-          count:0,
-      //inoreder to create another use state we gonna use the same this state and not create another this state
-         count2:0,
-         };
+      this.state={
+        userInfo:{
+          name:"Dummy name",
+          location:"Dummy Location",
+        },
+      };
     }
     
-    componentDidMount(){
-      //API calls
-      console.log("componentDidMount");
-    }
+  async componentDidMount()
+   {
+    const data=await fetch("https://api.github.com/users/sneha");
+
+    const json=await data.json();
+     
+    this.setState({
+      userInfo:json,
+    });
+
+   }
+
+   componentDidUpdate(){
+    
+   }
 
 
 
@@ -22,13 +34,9 @@ class Profile extends React.Component{
       var p=4;
        return <>
        <h1>Profile Class component</h1>
-       <h2> Name : {this.props.name}</h2>
-       <h2>Count:{this.state.count}</h2>
-       <button onClick={()=>{this.setState({
-        count:p++,
-       });}}>
-       setCount
-       </button>
+       <img src={this.state.userInfo.avatar_url}/>
+       <h2> Name : {this.state.userInfo.name}</h2>
+       <h2> Location : {this.state.userInfo.location}</h2>
        </>
      }
 }

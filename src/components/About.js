@@ -20,13 +20,17 @@ const About2=()=>{
 class About extends React.Component{
   constructor(props){
     super(props);
-    console.log("parent constructor");
+    this.state={
+      
+    };
   }
  
-   componentDidMount()
+    componentDidMount()
    {
-    console.log("componentDidMount");
-   }
+    
+    };
+
+  
 
   render(){
     console.log("render");
