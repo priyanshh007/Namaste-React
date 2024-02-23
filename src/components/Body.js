@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { resList } from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlneStatus";
 
 
 const Body=()=>{
@@ -31,6 +32,18 @@ const fetchData=async()=>{
 // {
 //   return <Shimmer/>
 // }
+
+const onlineStatus=useOnlineStatus();
+if(onlineStatus==false)
+{
+  return(
+    <h1>
+      Looks like you are offline check your connection !!
+    </h1>
+  )
+}
+
+
 
 
 //conditional rendering done using ternary operator
